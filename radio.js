@@ -76,7 +76,7 @@
     src = void 0;
     root_url = (settings.env === "development" ? "http://example.com:3000" : "http://scripts.collegedesis.com");
 
-    $("head").append("<link rel='stylesheet' href='" + root_url + "/stratus.css' type='text/css'/>");
+    $("head").append("<link rel='stylesheet' href='" + root_url + "/radio.css' type='text/css'/>");
     if (settings.align === "top") {
       $("head").append("<style>#stratus{ top: 0; }</style>");
     }
