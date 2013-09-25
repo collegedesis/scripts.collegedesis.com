@@ -14,7 +14,7 @@
     h = "postMessage";
     e = "addEventListener";
     c = void 0;
-    i = b[h] && !$.browser.opera;
+    i = false; //b[h] && !$.browser.opera;
     $[h] = function(k, l, m) {
       if (!l) {
         return;
@@ -66,17 +66,19 @@
     };
   })(jQuery);
 
-  $.fn.stratus = function(settings) {
+  $.fn.collegeDesisRadio = function(settings) {
     return $.stratus(settings);
   };
 
-  return $.stratus = function(settings) {
+  return $.collegeDesisRadio = function(settings) {
     var root_url, src;
     root_url = void 0;
     src = void 0;
+    settings['links'] = 'https://soundcloud.com/groups/collegedesis/';
+
     root_url = (settings.env === "development" ? "http://example.com:3000" : "http://scripts.collegedesis.com");
 
-    $("head").append("<link rel='stylesheet' href='" + root_url + "/radio.css' type='text/css'/>");
+    // $("head").append("<link rel='stylesheet' href='" + root_url + "/radio.css' type='text/css'/>");
     if (settings.align === "top") {
       $("head").append("<style>#stratus{ top: 0; }</style>");
     }
@@ -89,17 +91,21 @@
       $("head").append("<style>#stratus{ " + settings.align + ": " + settings.offset + "px !important; }</style>");
     }
 
-    $("body").append("<div id='stratus'><iframe allowtransparency='true' frameborder='0' scrolling='0'></div>");
-    src = root_url + "/player?" + $.param(settings, true) + "&link=" + encodeURIComponent(document.location.href);
-    $("#stratus iframe").attr({
-      src: src
-    });
+    var iFrameDiv = "<div id='stratus'><iframe allowtransparency='true' frameborder='0' scrolling='0'></div>";
+
+    $("body").append(iFrameDiv);
+
+    src = "http://stratus.sc" + "/player?" + $.param(settings, true) + "&link=" + encodeURIComponent(document.location.href);
+
+    $("#stratus iframe").attr({src: src});
+
     $("#stratus iframe").load(function() {
       return $(this).css({
         visibility: "visible"
       });
     });
     $("#stratus").show();
+
     $("a.stratus").click(function() {
       $.postMessage($(this).attr("href"), src, $("#stratus iframe")[0].contentWindow);
       return false;
