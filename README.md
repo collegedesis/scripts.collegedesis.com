@@ -4,6 +4,8 @@ This repo collects fun scripts that student organizations can embed into their o
 
 ## Radio
 
+**NOTE:** This is not ready to use yet.
+
 CollegeDesis has collected over South Asian DJs from all around the country. We'll get the latest and greatest music to show off the music. All you have to do is add a couple lines to your website!
 
 ### Usage
